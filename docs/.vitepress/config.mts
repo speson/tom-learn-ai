@@ -9,7 +9,7 @@ export default withMermaid(
     lastUpdated: true,
 
     head: [
-      ['link', { rel: 'icon', type: 'image/svg+xml', href: '/logo.svg' }],
+      ['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
     ],
 
     themeConfig: {

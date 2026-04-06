@@ -5,6 +5,9 @@ hero:
   name: "AI Study"
   text: "코드 기반 AI 학습 블로그"
   tagline: AI 기초 이론부터 에이전트 개발까지, 매일 한 챕터씩 학습합니다.
+  image:
+    src: /logo.svg
+    alt: AI Study Logo
   actions:
     - theme: brand
       text: 커리큘럼 보기
