@@ -20,27 +20,20 @@ Tool Use 없이:                    Tool Use와 함께:
 
 ## Tool Use 작동 방식
 
-```
-┌────────────────────────────────────────────┐
-│                Tool Use 흐름                │
-│                                            │
-│  1. 사용자: "서울 날씨 알려줘"               │
-│                    ↓                       │
-│  2. LLM: 사용 가능한 도구 목록 확인           │
-│     - get_weather(city)                    │
-│     - search_web(query)                    │
-│     - calculate(expression)                │
-│                    ↓                       │
-│  3. LLM: "get_weather 도구를 사용해야겠다"    │
-│     → {"tool": "get_weather",              │
-│        "input": {"city": "서울"}}           │
-│                    ↓                       │
-│  4. 시스템: 도구 실행                        │
-│     → {"temperature": 18, "condition": "맑음"}│
-│                    ↓                       │
-│  5. LLM: 결과를 자연어로 변환                │
-│     → "서울의 현재 기온은 18°C이며 맑습니다"   │
-└────────────────────────────────────────────┘
+```mermaid
+sequenceDiagram
+    participant U as 사용자
+    participant L as LLM
+    participant S as 시스템 (클라이언트)
+    participant T as 도구 (get_weather)
+
+    U->>L: 서울 날씨 알려줘
+    L->>L: 사용 가능한 도구 목록 확인<br/>(get_weather, search_web, calculate)
+    L->>S: get_weather 호출 요청<br/>{"city": "서울"}
+    S->>T: 도구 실행
+    T-->>S: {"temperature": 18, "condition": "맑음"}
+    S-->>L: 도구 결과 전달
+    L-->>U: 서울의 현재 기온은 18°C이며 맑습니다
 ```
 
 ### 핵심 포인트

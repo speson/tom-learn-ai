@@ -11,24 +11,19 @@
 
 ## MCP 서버의 구조
 
-```
 MCP 서버 = 도구(Tools) + 리소스(Resources) + 프롬프트(Prompts) 제공자
 
-┌────────────────────────────┐
-│       MCP Server           │
-│                            │
-│  @server.tool()            │  ← AI가 호출할 수 있는 함수
-│  def my_tool():            │
-│      ...                   │
-│                            │
-│  @server.resource()        │  ← AI가 읽을 수 있는 데이터
-│  def my_resource():        │
-│      ...                   │
-│                            │
-│  @server.prompt()          │  ← 재사용 가능한 프롬프트
-│  def my_prompt():          │
-│      ...                   │
-└────────────────────────────┘
+```mermaid
+graph TD
+    subgraph server["MCP Server"]
+        T["@server.tool()<br/>def my_tool()<br/><i>AI가 호출할 수 있는 함수</i>"]
+        R["@server.resource()<br/>def my_resource()<br/><i>AI가 읽을 수 있는 데이터</i>"]
+        P["@server.prompt()<br/>def my_prompt()<br/><i>재사용 가능한 프롬프트</i>"]
+    end
+
+    style T fill:#dff0d8,stroke:#3c763d
+    style R fill:#dfe8ff,stroke:#3a5fd9
+    style P fill:#fdf2cc,stroke:#c9a227
 ```
 
 ## 실습: 메모 관리 MCP 서버

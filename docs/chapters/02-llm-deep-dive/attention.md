@@ -96,28 +96,36 @@ Step 3: 가중 평균 (× V)
 
 하나의 어텐션만으로는 다양한 관계를 동시에 포착하기 어렵습니다. **Multi-Head**는 여러 개의 어텐션을 병렬로 실행합니다:
 
-```
-┌──────────────────────────────────────┐
-│          Multi-Head Attention         │
-│                                      │
-│  Head 1: 문법적 관계 (주어-동사)       │
-│  Head 2: 의미적 관계 (사과-먹다)       │
-│  Head 3: 위치적 관계 (인접 단어)       │
-│  Head 4: 대명사 해석 (그것-고양이)     │
-│  ...                                 │
-│  Head N: 기타 패턴                    │
-│                                      │
-│  → 모든 Head의 출력을 합쳐서 최종 결과  │
-└──────────────────────────────────────┘
+```mermaid
+block-beta
+    columns 1
+    MHA["Multi-Head Attention"]:1
+    block:heads:1
+        H1["Head 1: 문법적 관계 (주어-동사)"]
+        H2["Head 2: 의미적 관계 (사과-먹다)"]
+        H3["Head 3: 위치적 관계 (인접 단어)"]
+        H4["Head 4: 대명사 해석 (그것-고양이)"]
+        HN["Head N: 기타 패턴"]
+    end
+    OUT["→ 모든 Head의 출력을 합쳐서 최종 결과"]:1
 ```
 
-```
-입력
- │
- ├──→ Head 1 (Q₁,K₁,V₁) ──→ 출력₁ ─┐
- ├──→ Head 2 (Q₂,K₂,V₂) ──→ 출력₂ ─┤
- ├──→ Head 3 (Q₃,K₃,V₃) ──→ 출력₃ ─┼──→ [Concat] → [Linear] → 최종 출력
- └──→ Head N (Qₙ,Kₙ,Vₙ) ──→ 출력ₙ ─┘
+```mermaid
+flowchart LR
+    IN["입력"]
+    H1["Head 1\nQ₁,K₁,V₁"]
+    H2["Head 2\nQ₂,K₂,V₂"]
+    H3["Head 3\nQ₃,K₃,V₃"]
+    HN["Head N\nQₙ,Kₙ,Vₙ"]
+    CAT["Concat"]
+    LIN["Linear"]
+    OUT["최종 출력"]
+
+    IN --> H1 --> CAT
+    IN --> H2 --> CAT
+    IN --> H3 --> CAT
+    IN --> HN --> CAT
+    CAT --> LIN --> OUT
 ```
 
 현대 LLM에서의 Head 수:

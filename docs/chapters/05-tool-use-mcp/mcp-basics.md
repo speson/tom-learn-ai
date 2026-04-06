@@ -27,15 +27,21 @@ USB-C가 다양한 기기의 충전/데이터 포트를 통일한 것처럼, MCP
 
 ## MCP 아키텍처
 
-```
-┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-│  MCP Host   │     │ MCP Client  │     │ MCP Server  │
-│             │     │             │     │             │
-│ Claude Code │────→│  프로토콜   │────→│  도구 제공   │
-│ Claude App  │     │  클라이언트  │     │             │
-│ IDE         │     │             │     │ DB, API,    │
-│             │     │             │     │ 파일시스템   │
-└─────────────┘     └─────────────┘     └─────────────┘
+```mermaid
+flowchart LR
+    subgraph host["MCP Host"]
+        HC["Claude Code\nClaude App\nIDE"]
+    end
+
+    subgraph client["MCP Client"]
+        CC["프로토콜\n클라이언트"]
+    end
+
+    subgraph server["MCP Server"]
+        SC["도구 제공\n\nDB, API,\n파일시스템"]
+    end
+
+    host --> client --> server
 ```
 
 | 구성요소 | 역할 | 예시 |
