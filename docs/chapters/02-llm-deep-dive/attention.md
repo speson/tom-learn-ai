@@ -214,17 +214,15 @@ softmax([0.71, 0.0]) = [e^0.71 / (e^0.71 + e^0), e^0 / (e^0.71 + e^0)]
 하나의 어텐션만으로는 다양한 관계를 동시에 포착하기 어렵습니다. **Multi-Head**는 여러 개의 어텐션을 병렬로 실행합니다:
 
 ```mermaid
-block-beta
-    columns 1
-    MHA["Multi-Head Attention"]:1
-    block:heads:1
-        H1["Head 1: 문법적 관계 (주어-동사)"]
-        H2["Head 2: 의미적 관계 (사과-먹다)"]
-        H3["Head 3: 위치적 관계 (인접 단어)"]
-        H4["Head 4: 대명사 해석 (그것-고양이)"]
+flowchart TD
+    subgraph MHA["Multi-Head Attention"]
+        H1["Head 1: 문법적 관계\n(주어-동사)"]
+        H2["Head 2: 의미적 관계\n(사과-먹다)"]
+        H3["Head 3: 위치적 관계\n(인접 단어)"]
+        H4["Head 4: 대명사 해석\n(그것-고양이)"]
         HN["Head N: 기타 패턴"]
     end
-    OUT["→ 모든 Head의 출력을 합쳐서 최종 결과"]:1
+    MHA --> OUT["모든 Head의 출력을 합쳐서 최종 결과"]
 ```
 
 ```mermaid
