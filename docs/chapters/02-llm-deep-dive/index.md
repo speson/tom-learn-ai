@@ -51,7 +51,7 @@ flowchart LR
         subgraph 디코더["디코더 (Decoder)"]
             D["출력 생성"]
         end
-        인코더 -->|"&nbsp;"| 디코더
+        인코더 --> 디코더
     end
     IN["'나는 학생이다'\n(입력)"] --> 인코더
     디코더 --> OUT["'I am a student'\n(출력)"]

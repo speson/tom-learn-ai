@@ -227,9 +227,9 @@ for block in response.content:
 
 ```mermaid
 graph TD
-    S["시스템 프롬프트 (System)<br/><i>AI의 성격, 규칙, 역할</i>"]
-    U["사용자 메시지 (User)<br/><i>실제 질문/요청</i>"]
-    A["AI 응답 (Assistant)<br/><i>시스템 + 사용자를 고려한 답변</i>"]
+    S["시스템 프롬프트 (System)<br/>AI의 성격, 규칙, 역할"]
+    U["사용자 메시지 (User)<br/>실제 질문/요청"]
+    A["AI 응답 (Assistant)<br/>시스템 + 사용자를 고려한 답변"]
 
     S --> A
     U --> A

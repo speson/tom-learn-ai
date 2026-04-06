@@ -16,9 +16,9 @@ MCP 서버 = 도구(Tools) + 리소스(Resources) + 프롬프트(Prompts) 제공
 ```mermaid
 graph TD
     subgraph server["MCP Server"]
-        T["@server.tool()<br/>def my_tool()<br/><i>AI가 호출할 수 있는 함수</i>"]
-        R["@server.resource()<br/>def my_resource()<br/><i>AI가 읽을 수 있는 데이터</i>"]
-        P["@server.prompt()<br/>def my_prompt()<br/><i>재사용 가능한 프롬프트</i>"]
+        T["@server.tool()<br/>def my_tool()<br/>AI가 호출할 수 있는 함수"]
+        R["@server.resource()<br/>def my_resource()<br/>AI가 읽을 수 있는 데이터"]
+        P["@server.prompt()<br/>def my_prompt()<br/>재사용 가능한 프롬프트"]
     end
 
     style T fill:#dff0d8,stroke:#3c763d
